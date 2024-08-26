@@ -30,7 +30,12 @@ export const config: Options.Testrunner = {
     // of the config file unless it's absolute.
     //
     specs: [
+        // `${process.cwd()}/test/features/**/*.feature`
         `${process.cwd()}/test/features/**/*.feature`
+
+        //process.cwd is node method which will return the current working directory 
+        //** which will consider any folder
+        //* means will consider any file 
     ],
     // Patterns to exclude.
     exclude: [

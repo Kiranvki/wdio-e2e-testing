@@ -11,4 +11,4 @@ Feature: Jira Login
 
         Examples:
             | TestID     | Username             | ExpectedURL           |
-            | DEMO_TC001 | dchoukse@visteon.com | https://visteon-dev.atlassian.net/jira/your-work |
+            | DEMO_TC001 | kvinayag@visteon.com | https://visteon-dev.atlassian.net/jira/your-work |
