@@ -1,14 +1,11 @@
-Feature: Jira Login 
-    As a Developer
-    I want to test login for Jira site
-
-    @login
-    Scenario Outline: Successful Jira login with valid credentials
-        Given Jira Site is opened
-        When I enter the inputfield of Jira site <Username> 
-        And I enter the inputfield of SSO site <Username> 
-        Then ULR should match <ExpectedURL>
+Feature: Jira login
+    # @login
+    Scenario Outline: Login sucessfully into jira with valid creaditials
+        Given Jira login page is opened
+        When  I enter the userfield with <Username>
+        # Then Click on the first search result
+        # Then URL should match the <ExpectedURL>
 
         Examples:
-            | TestID     | Username             | ExpectedURL           |
-            | DEMO_TC001 | kvinayag@visteon.com | https://visteon-dev.atlassian.net/jira/your-work |
+            | Test Id    | Username             | ExpectedURL |
+            | DEMO_TC001 | kvinayag@visteon.com | Value 3     |

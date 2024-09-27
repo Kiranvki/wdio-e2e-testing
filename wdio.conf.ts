@@ -1,4 +1,13 @@
 import type { Options } from '@wdio/types'
+import dotenv from "dotenv"
+import allure from "@wdio/allure-reporter"
+import fs from "fs"
+
+dotenv.config()
+
+let headless=process.env.HEADLESS
+//@ts-ignore
+let environment=process.env.ENVIRONMENT
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -64,7 +73,12 @@ export const config: Options.Testrunner = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        maxInstances:5,
+        "goog:chromeOptions":{
+            //@ts-ignore
+            args: headless.toUpperCase==="Y"?["--disable-web-security","--headless","--auth-server-allowlist=https://visteon-sandbox.atlassian.net"]:[]
+        }
     }],
 
     //
@@ -98,7 +112,7 @@ export const config: Options.Testrunner = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    //baseUrl: 'https://the-internet.herokuapp.com',
+    baseUrl: 'https://the-internet.herokuapp.com',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -137,7 +151,17 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec',
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+            useCucumberStepReporter:true,
+            reportedEnvironmentVars:{
+                "Environment":environment
+            }
+          }],
+    ],
 
     // If you are using Cucumber you need to specify the location of your step definitions.
     cucumberOpts: {
@@ -181,8 +205,11 @@ export const config: Options.Testrunner = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        if(process.env.RUNNER==="LOCAL" && fs.existsSync("./allure-results")){
+            fs.rmdirSync("./allure-results",{recursive:true})
+        }
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -244,8 +271,12 @@ export const config: Options.Testrunner = {
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {object}                 context  Cucumber World object
      */
-    // beforeScenario: function (world, context) {
-    // },
+    beforeScenario: function (world, context) {
+        let arr=world.pickle.name.split(/:/)
+        //@ts-ignore
+        if(arr.length>0) browser.options.testId=arr[0]
+
+    },
     /**
      *
      * Runs before a Cucumber Step.
@@ -253,8 +284,8 @@ export const config: Options.Testrunner = {
      * @param {IPickle}            scenario scenario pickle
      * @param {object}             context  Cucumber World object
      */
-    // beforeStep: function (step, scenario, context) {
-    // },
+    beforeStep: function (step, scenario, context) {
+    },
     /**
      *
      * Runs after a Cucumber Step.
@@ -266,8 +297,12 @@ export const config: Options.Testrunner = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: async function (step, scenario, result, context) {
+        //Take screenshot when failed 
+        if(!result.passed){
+            await browser.takeScreenshot()
+        }
+    },
     /**
      *
      * Runs after a Cucumber Scenario.
@@ -286,8 +321,9 @@ export const config: Options.Testrunner = {
      * @param {string}                   uri      path to feature file
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
-    // afterFeature: function (uri, feature) {
-    // },
+    afterFeature: function (uri, feature) {
+      
+    },
     
     /**
      * Runs after a WebdriverIO command gets executed

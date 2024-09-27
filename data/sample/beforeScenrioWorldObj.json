@@ -1,0 +1,140 @@
+{
+    "gherkinDocument": {
+        "feature": {
+            "tags": [
+                {
+                    "location": {
+                        "line": 1,
+                        "column": 1
+                    },
+                    "name": "@login",
+                    "id": "101279fc-7471-4a8d-98c0-dcb9947964cd"
+                }
+            ],
+            "location": {
+                "line": 2,
+                "column": 1
+            },
+            "language": "en",
+            "keyword": "Feature",
+            "name": "Cucumber Demo",
+            "description": "    We can have any pretext untill\n    we declare the Scenario but we shouldNot add\n    and reserved keyword of gerkin\n    Feature Description",
+            "children": [
+                {
+                    "background": {
+                        "id": "efd7f973-8db4-472e-a7ff-4aec0d740944",
+                        "location": {
+                            "line": 8,
+                            "column": 5
+                        },
+                        "keyword": "Background",
+                        "name": "Open Jira Page",
+                        "description": "",
+                        "steps": [
+                            {
+                                "id": "2e9e7ba2-7bcc-48f3-9ff3-c768ce235628",
+                                "location": {
+                                    "line": 9,
+                                    "column": 9
+                                },
+                                "keyword": "Given ",
+                                "keywordType": "Context",
+                                "text": "Jira login page is opened"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "scenario": {
+                        "id": "fbc0f30f-8ac2-45fe-ac57-a9af2ac3e5a5",
+                        "tags": [],
+                        "location": {
+                            "line": 11,
+                            "column": 5
+                        },
+                        "keyword": "Scenario",
+                        "name": "Scenario name",
+                        "description": "",
+                        "steps": [
+                            {
+                                "id": "3e67f3c3-448a-463c-82d8-7080eeea4366",
+                                "location": {
+                                    "line": 12,
+                                    "column": 9
+                                },
+                                "keyword": "When ",
+                                "keywordType": "Action",
+                                "text": "I enter the userfield with kvinayag@visteon.com"
+                            }
+                        ],
+                        "examples": []
+                    }
+                },
+                {
+                    "scenario": {
+                        "id": "e5a5eae6-05d8-441a-ba93-16eabb9eecc8",
+                        "tags": [],
+                        "location": {
+                            "line": 14,
+                            "column": 5
+                        },
+                        "keyword": "Scenario",
+                        "name": "Scenario name",
+                        "description": "",
+                        "steps": [
+                            {
+                                "id": "836213b8-a994-4498-9e3b-3abad536b181",
+                                "location": {
+                                    "line": 15,
+                                    "column": 9
+                                },
+                                "keyword": "When ",
+                                "keywordType": "Action",
+                                "text": "I enter the userfield with kiran.1js15me407@visteon.com"
+                            }
+                        ],
+                        "examples": []
+                    }
+                }
+            ]
+        },
+        "comments": [],
+        "uri": "test\\features\\demo\\CucumberDemo.feature"
+    },
+    "pickle": {
+        "id": "612319b9-513c-4ba7-992f-a59de82d86e1",
+        "uri": "test\\features\\demo\\CucumberDemo.feature",
+        "astNodeIds": [
+            "e5a5eae6-05d8-441a-ba93-16eabb9eecc8"
+        ],
+        "tags": [
+            {
+                "name": "@login",
+                "astNodeId": "101279fc-7471-4a8d-98c0-dcb9947964cd"
+            }
+        ],
+        "name": "Scenario name",
+        "language": "en",
+        "steps": [
+            {
+                "id": "f0b4f950-90d3-495d-a1a9-c388f926884f",
+                "text": "Jira login page is opened",
+                "type": "Context",
+                "astNodeIds": [
+                    "2e9e7ba2-7bcc-48f3-9ff3-c768ce235628"
+                ],
+                "keyword": "Given "
+            },
+            {
+                "id": "88b121af-75c6-48b2-87c7-d964ab1e974d",
+                "text": "I enter the userfield with kiran.1js15me407@visteon.com",
+                "type": "Action",
+                "astNodeIds": [
+                    "836213b8-a994-4498-9e3b-3abad536b181"
+                ],
+                "keyword": "When "
+            }
+        ]
+    },
+    "testCaseStartedId": "2f9ac7b5-a49c-4e4e-abad-d9dc8f52a42c"
+}

@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:local": "set HEADLESS=N && set ENVIRONMENT=LOCAL && wdio run ./config/wdio.local.conf.ts --cucumberOpts.tagExpression='@checklist'",
+    "test:smoke": "set HEADLESS=Y && wdio run ./config/wdio.local.conf.ts --cucumberOpts.tagExpression='@checklist'",
     "wdio": "wdio run ./wdio.conf.ts"
   },
   "keywords": [
@@ -24,5 +26,10 @@
     "chai": "^5.1.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@wdio/allure-reporter": "^9.0.8",
+    "dotenv": "^16.4.5",
+    "winston": "^3.14.2"
   }
 }
